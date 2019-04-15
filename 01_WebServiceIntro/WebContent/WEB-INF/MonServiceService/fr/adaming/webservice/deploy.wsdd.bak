@@ -1,0 +1,29 @@
+<!-- Use this file to deploy some handlers/chains and services      -->
+<!-- Two ways to do this:                                           -->
+<!--   java org.apache.axis.client.AdminClient deploy.wsdd          -->
+<!--      after the axis server is running                          -->
+<!-- or                                                             -->
+<!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   -->
+<!--      from the same directory that the Axis engine runs         -->
+
+<deployment
+    xmlns="http://xml.apache.org/axis/wsdd/"
+    xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- Services from MonServiceService WSDL service -->
+
+  <service name="MonService" provider="java:RPC" style="wrapped" use="literal">
+      <parameter name="wsdlTargetNamespace" value="http://webservice.adaming.fr"/>
+      <parameter name="wsdlServiceElement" value="MonServiceService"/>
+      <parameter name="schemaQualified" value="http://webservice.adaming.fr"/>
+      <parameter name="wsdlServicePort" value="MonService"/>
+      <parameter name="className" value="fr.adaming.webservice.MonServiceSoapBindingImpl"/>
+      <parameter name="wsdlPortType" value="MonService"/>
+      <parameter name="typeMappingVersion" value="1.2"/>
+      <operation name="disBonjour" qname="operNS:disBonjour" xmlns:operNS="http://webservice.adaming.fr" returnQName="retNS:disBonjourReturn" xmlns:retNS="http://webservice.adaming.fr" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:nom" xmlns:pns="http://webservice.adaming.fr" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <parameter name="allowedMethods" value="disBonjour"/>
+
+  </service>
+</deployment>

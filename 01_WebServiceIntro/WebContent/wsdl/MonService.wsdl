@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://webservice.adaming.fr"
+	xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://webservice.adaming.fr"
+	xmlns:intf="http://webservice.adaming.fr" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+	xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<!--WSDL created by Apache Axis version: 1.4 Built on Apr 22, 2006 (06:55:48 
+		PDT) -->
+
+	<wsdl:types>
+		<schema elementFormDefault="qualified" targetNamespace="http://webservice.adaming.fr"
+			xmlns="http://www.w3.org/2001/XMLSchema">
+			<element name="disBonjour">
+				<complexType>
+					<sequence>
+						<element name="nom" type="xsd:string" />
+					</sequence>
+				</complexType>
+			</element>
+			<element name="disBonjourResponse">
+				<complexType>
+					<sequence>
+						<element name="disBonjourReturn" type="xsd:string" />
+					</sequence>
+				</complexType>
+			</element>
+		</schema>
+	</wsdl:types>
+
+	<wsdl:message name="disBonjourRequest">
+
+		<wsdl:part element="impl:disBonjour" name="parameters">
+
+		</wsdl:part>
+
+	</wsdl:message>
+
+	<wsdl:message name="disBonjourResponse">
+
+		<wsdl:part element="impl:disBonjourResponse" name="parameters">
+
+		</wsdl:part>
+
+	</wsdl:message>
+
+	<wsdl:portType name="MonService">
+
+		<wsdl:operation name="disBonjour">
+
+			<wsdl:input message="impl:disBonjourRequest" name="disBonjourRequest">
+
+			</wsdl:input>
+
+			<wsdl:output message="impl:disBonjourResponse" name="disBonjourResponse">
+
+			</wsdl:output>
+
+		</wsdl:operation>
+
+	</wsdl:portType>
+
+	<wsdl:binding name="MonServiceSoapBinding" type="impl:MonService">
+
+		<wsdlsoap:binding style="document"
+			transport="http://schemas.xmlsoap.org/soap/http" />
+
+		<wsdl:operation name="disBonjour">
+
+			<wsdlsoap:operation soapAction="" />
+
+			<wsdl:input name="disBonjourRequest">
+
+				<wsdlsoap:body use="literal" />
+
+			</wsdl:input>
+
+			<wsdl:output name="disBonjourResponse">
+
+				<wsdlsoap:body use="literal" />
+
+			</wsdl:output>
+
+		</wsdl:operation>
+
+	</wsdl:binding>
+
+	<wsdl:service name="MonServiceService">
+
+		<wsdl:port binding="impl:MonServiceSoapBinding" name="MonService">
+
+			<wsdlsoap:address
+				location="http://localhost:8080/01_WebServiceIntro/services/MonService" />
+
+		</wsdl:port>
+
+	</wsdl:service>
+
+</wsdl:definitions>
